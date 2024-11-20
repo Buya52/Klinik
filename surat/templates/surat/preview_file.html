@@ -1,0 +1,30 @@
+<!-- surat/templates/surat/preview_file.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pratinjau File Surat</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Pratinjau File Surat</h1>
+
+        <div class="mt-4 mb-4">
+            <a href="{% url 'list_surat' %}" class="btn btn-secondary">Kembali ke Daftar Surat</a>
+        </div>
+        
+        {% if surat.file_surat %}
+            <div style="border: 1px solid #ddd; padding: 10px; overflow: hidden;">
+                <!-- Tampilkan file PDF atau gambar -->
+                <iframe src="{{ surat.file_surat.url }}" width="100%" height="600px" frameborder="0">
+                    Browser Anda tidak mendukung tampilan file ini.
+                </iframe>
+            </div>
+        {% else %}
+            <p>File tidak tersedia.</p>
+        {% endif %}
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!-- surat/templates/surat/add_surat.html -->
+{% extends 'surat/base.html' %}
+{% load add_class_filter %}
+
+{% block content %}
+<h2 class="mb-4">Tambah Surat</h2>
+<a href="{% url 'list_surat' %}" class="btn btn-primary mb-3">Kembali ke halaman list surat</a>
+<form method="post" enctype="multipart/form-data" class="card p-4 shadow-sm">
+    {% csrf_token %}
+    <div class="mb-3">
+        {{ form.jenis.label_tag }}
+        {{ form.jenis|add_class:"form-select" }}
+    </div>
+    <div class="mb-3">
+        {{ form.nomor_surat.label_tag }}
+        {{ form.nomor_surat|add_class:"form-control" }}
+    </div>
+    <div class="mb-3">
+        {{ form.tanggal_surat.label_tag }}
+        {{ form.tanggal_surat|add_class:"form-control" }}
+    </div>
+    <div class="mb-3">
+        {{ form.pengirim.label_tag }}
+        {{ form.pengirim|add_class:"form-control" }}
+    </div>
+    <div class="mb-3">
+        {{ form.penerima.label_tag }}
+        {{ form.penerima|add_class:"form-control" }}
+    </div>
+    <div class="mb-3">
+        {{ form.perihal.label_tag }}
+        {{ form.perihal|add_class:"form-control" }}
+    </div>
+    <div class="mb-3">
+        {{ form.file_surat.label_tag }}
+        {{ form.file_surat|add_class:"form-control" }}
+    </div>
+    <button type="submit" class="btn btn-primary">Simpan</button>
+</form>
+{% endblock %}

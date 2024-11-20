@@ -1,0 +1,47 @@
+<!-- surat/templates/surat/list_surat.html -->
+{% extends 'surat/base.html' %}
+{% load static %}
+
+{% block content %}
+<h2 class="mb-4">Daftar Surat</h2>
+<h4 class="mb-4">Pastikan file yang diupload adalah file dengan format PDF</h4>
+<a href="{% url 'add_surat' %}" class="btn btn-primary mb-3">Tambah Surat</a>
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Jenis</th>
+            <th>Nomor Surat</th>
+            <th>Tanggal Surat</th>
+            <th>Pengirim</th>
+            <th>Penerima</th>
+            <th>Perihal</th>
+            <th>File Surat</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for surat in surat %}
+        <tr>
+            <td>{{ surat.jenis }}</td>
+            <td>{{ surat.nomor_surat }}</td>
+            <td>{{ surat.tanggal_surat }}</td>
+            <td>{{ surat.pengirim }}</td>
+            <td>{{ surat.penerima }}</td>
+            <td>{{ surat.perihal }}</td>
+            <td>
+                {% if surat.file_surat %}
+                    <a href="{% url 'preview_file' surat.id %}" class="btn btn-info btn-sm">Lihat File</a>
+                {% else %}
+                    Tidak ada file
+                {% endif %}
+            </td>
+            <td>
+                <a href="{% url 'edit_surat' surat.id %}" class="btn btn-sm btn-warning">Edit</a>
+                <a href="{% url 'delete_surat' surat.id %}" class="btn btn-sm btn-danger" onclick="return confirmHapus();">Hapus</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<script src="{% static 'js/alertHapus.js' %}"></script>
+{% endblock %}
